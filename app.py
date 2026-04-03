@@ -82,6 +82,10 @@ if uploaded_file and user_query and recipient_email:
                     try:
                         result = n8n_response.json()
                         st.success("Workflow Completed Successfully!")
+
+                        # Grab the email text from n8n and display it on the website
+                        email_text = result.get("email_draft", "Draft generated and sent, but not returned to UI.")
+                        st.info(email_text)
                         
                         col1, col2 = st.columns(2)
                         with col1:
